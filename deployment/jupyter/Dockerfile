@@ -1,4 +1,8 @@
 FROM jupyter/scipy-notebook
 
-ENTRYPOINT ["start.sh"] 
+RUN pip install -U pip
+COPY requirements.txt /tmp/requirements.txt
+RUN pip install -r /tmp/requirements.txt
+
+ENTRYPOINT ["start.sh"]
 CMD ["jupyter", "lab", "--host=0.0.0.0"]
