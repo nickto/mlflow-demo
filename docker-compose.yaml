@@ -9,14 +9,15 @@ services:
     volumes:
       - ./mlflow:/mlflow
     entrypoint: mlflow
+    # Note that --default-artifact-root should be set as seen from client
     command:
       - server
       - --backend-store-uri=sqlite:////mlflow/mlflow.db
-      - --default-artifact-root=file://mlflow/artifacts  # as seen from client
+      - --default-artifact-root=file:///mlflow/artifacts
       - --host=0.0.0.0
       - --port=5000
   jupyter:
-    build: 
+    build:
       context: deployment/jupyter
       dockerfile: Dockerfile
     ports:
@@ -25,8 +26,8 @@ services:
       - ./:/home/jovyan/mlflow-demo
       - ./mlflow:/mlflow
     entrypoint: start.sh
-    environment: 
-      MLFLOW_TRACKING_URI: http://mlflow:5000    
+    environment:
+      MLFLOW_TRACKING_URI: http://mlflow:5000
     command:
       - jupyter
       - lab
