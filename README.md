@@ -1,3 +1,9 @@
-# Lightning talk MLflow
+# MLflow demo
 
-Lightning talk about MLflow at Dataroots.
+MLflow demo for lightning talks at Dataroots.
+
+## Data
+
+### Download data
+
+`./scripts/download.sh` downloads data to `data/raw/emp_attrition.csv`.
