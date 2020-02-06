@@ -1,11 +1,11 @@
 FROM python:3
 RUN apt-get update
 
-RUN pip install -U pip
+RUN python -m pip install -U pip
 COPY requirements.txt /tmp/requirements.txt
 
 RUN apt-get install sqlite3
-RUN pip install -r /tmp/requirements.txt
+RUN python -m pip install -r /tmp/requirements.txt
 
 WORKDIR /mlflow
 ENTRYPOINT ["mlflow"]
