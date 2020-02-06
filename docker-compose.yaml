@@ -17,3 +17,17 @@ services:
       - --default-artifact-root=/mlflow/artifacts
       - --host=0.0.0.0
       - --port=5000
+  jupyter:
+    build: 
+      context: deployment/jupyter
+      dockerfile: Dockerfile
+    ports:
+      - "8888:8888"
+    volumes:
+      - ./:/home/jovyan
+    entrypoint: start.sh
+    command:
+      - jupyter
+      - lab
+      - --host=0.0.0.0
+
